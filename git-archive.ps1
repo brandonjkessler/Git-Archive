@@ -1,6 +1,37 @@
+<#
+    .SYNOPSIS
+    Uses Git command line to export a Git repo.
+
+    .DESCRIPTION
+    Uses Git command line to export a Git repo.  
+    Useful for removing bloat of .git folder.
+    
+    .PARAMETER Path
+    Path to the Git repo. This will be the folder that has the .git folder below it.
+
+    .PARAMETER Branch
+    This is the branch from git you wish to archive from.
+    
+    .INPUTS
+    Accepts inputs from pipeline that are Path or Branch
+
+    .OUTPUTS
+    None.
+
+    .EXAMPLE
+    Git-Archive -Path C:\Github\Some-Project -Branch Main
+
+    .LINK
+    
+#>
+
 param(
-    [string]$Path,
-    [string]$Branch
+    [parameter(Mandatory,ValueFromPipelineByPropertyName,HelpMessage='Path to the folder that has the .git folder under it.')]
+    [string]
+    $Path,
+    [parameter(Mandatory,ValueFromPipelineByPropertyName,HelpMessage='Branch of the git repo that you want to export.')]
+    [string]
+    $Branch
 )
 
 $curLoc = Get-Location
